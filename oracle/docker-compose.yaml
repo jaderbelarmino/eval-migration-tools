@@ -1,0 +1,11 @@
+services:
+  oracle:
+    container_name: oracle
+    image: oracle/database:21.3.0-xe
+    ports:
+      - "51521:1521"
+      - "55500:5500"
+    environment:
+      ORACLE_PWD: SUA_SENHA
+      ORACLE_CHARACTERSET: AL32UTF8
+    restart: unless-stopped

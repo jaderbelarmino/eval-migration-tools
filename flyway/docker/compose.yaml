@@ -1,0 +1,11 @@
+services:
+  flyway:
+    image: redgate/flyway:latest
+    command: -cleanDisabled=false clean  
+    volumes:
+      - ./lib:/flyway/drivers
+      - ../migrations:/flyway/sql
+    environment:
+      - FLYWAY_URL=jdbc:oracle:thin:@192.168.15.36:51521:xe
+      - FLYWAY_USER=C##FLYWAYDB
+      - FLYWAY_PASSWORD=flyway
