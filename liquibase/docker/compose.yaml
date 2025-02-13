@@ -1,0 +1,13 @@
+services:
+  liquibase:
+    image: liquibase/liquibase:latest
+    container_name: liquibase
+    volumes:
+      - ../changelog:/liquibase/changelog
+      - ./lib:/liquibase/lib
+    environment:
+      - LIQUIBASE_COMMAND_URL=jdbc:oracle:thin:@192.168.15.36:51521/XE
+      - LIQUIBASE_COMMAND_USERNAME=C##liquibasedb
+      - LIQUIBASE_COMMAND_PASSWORD=liquibase
+      - LIQUIBASE_COMMAND_CHANGELOG_FILE=/changelog/include_all.xml
+    entrypoint: ["sh", "-c", "liquibase update"]
